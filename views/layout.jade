@@ -1,15 +1,39 @@
 doctype html
-html.no-js(lang='en')
+html(ng-app='expressFoundationNG')
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title FoundationExpress
+    link(rel='stylesheet', href='/javascripts/vendor/components-font-awesome/css/font-awesome.min.css')
     link(rel='stylesheet', href='/stylesheets/app.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/javascripts/vendor/modernizr/modernizr.js')
   body
     .row
       .large-12.columns
         h1 Welcome to Foundation
+    .row
+      .large-12.columns
+        h3 CHECK IT OUT!  Mad Mimi's Angular-Foundation Components Added <333
+        div(ng-controller='accordionController')
+          label.checkbox
+            input(type='checkbox', ng-model='oneAtATime')
+            | Open only one at a time
+          accordion(close-others='oneAtATime')
+            accordion-group(heading='Static Header, initially expanded', is-open='true')
+              | This content is straight in the template.
+            accordion-group(heading='{{group.title}}', ng-repeat='group in groups')
+              | {{group.content}}
+            accordion-group(heading='Dynamic Body Content')
+              p The body of the accordion group grows to fit the contents
+              button.button.small(ng-click='addItem()') Add Item
+              div(ng-repeat='item in items') {{item}}
+            accordion-group(is-open='isopen')
+              accordion-heading
+                | I can have markup, too!
+                i.right.fa.fa-fix(ng-class='{"fa-chevron-down": isopen, "fa-chevron-right": !isopen}')
+              | This is just some content to illustrate fancy headings.
+            br
     .row
       .large-12.columns
         .panel
@@ -126,10 +150,11 @@ html.no-js(lang='en')
           p
             | A whole kitchen sink of goodies comes with Foundation. Checkout the docs to see them all, along with details on making them your own.
           a.small.button(href='http://foundation.zurb.com/docs/') Go to Foundation Docs
+    script(src='/javascripts/vendor/angular/angular.min.js')
+    script(src='/javascripts/vendor/angular-foundation-bower/mm-foundation-tpls.min.js')
+    script(src='/javascripts/app.js')
+    script(src='/javascripts/angular-controller.js')
     script(src='/javascripts/vendor/fastclick/lib/fastclick.js')
     script(src='/javascripts/vendor/jquery/dist/jquery.min.js')
     script(src='/javascripts/vendor/jquery.cookie/jquery.cookie.js')
     script(src='/javascripts/vendor/foundation/js/foundation.min.js')
-    script(src='/javascripts/app.js')
-    script(src='/javascripts/vendor/angular/angular.min.js')
-    script(src='/javascripts/vendor/angular-foundation-bower/mm-foundation-tpls.js')

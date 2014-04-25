@@ -1,0 +1,4 @@
+Fix font-awesome line-height issue
+*.fa-fix {
+	line-height: inherit;
+}
